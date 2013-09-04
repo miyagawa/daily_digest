@@ -13,7 +13,7 @@ task :deliver do
   items = pocket.list
 
   puts "Parsing items with Readability"
-  reader = DailyDigest::Reader.new(ENV['READER_PARSER_KEY'])
+  reader = DailyDigest::Reader.new(ENV['READABILITY_PARSER_KEY'])
   articles = items.map { |item| reader.get(item.url) }
 
   basename = "dailydigest-#{Time.now.strftime('%Y%m%d%H%M%S')}"

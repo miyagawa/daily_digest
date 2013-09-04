@@ -40,7 +40,7 @@ You will have `.env` file that looks like:
 ```
 POCKET_CONSUMER_KEY=1234-abcd
 POCKET_ACCESS_TOKEN=a2aa5caa-c000-6ecb-b589-f7daea
-READER_PARSER_KEY=2caeae6676796adada6967a5cddcd6a2292
+READABILITY_PARSER_KEY=2caeae6676796adada6967a5cddcd6a2292
 ```
 
 You have to manually authenticate against [Pocket OAuth endpoint](http://getpocket.com/developer/docs/authentication) to get the tokens. Sorry.
