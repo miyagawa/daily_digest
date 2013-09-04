@@ -3,6 +3,7 @@ require 'dotenv'
 require 'daily_digest'
 require 'tempfile'
 require 'pathname'
+require 'fileutils'
 
 Dotenv.load
 
@@ -26,5 +27,11 @@ task :deliver do
   kindlegen.convert(tempfile, basename + ".mobi")
 
   File.delete(tempfile)
+
+  outbox = "#{ENV['HOME']}/Dropbox/Public/Kindle"
+  if File.exists?(outbox)
+    puts "Publishing #{basename}.mobi to your Dropbox"
+    FileUtils.move(basename + ".mobi", outbox)
+  end
 end
 
