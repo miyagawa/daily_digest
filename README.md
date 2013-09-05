@@ -21,7 +21,11 @@ Generates Daily Digest from Pocket
 * Fetch unread items from [Pocket](http://getpocket.com)
 * Parse content with [Readbility](http://www.readability.com)
 * Create MOBI with Calibre ebook-convert
-* Copy the mobi to `~/Dropbox/Public/Kindle` for [IFTTT](http://ifttt.com) automation
+
+Depending on your configuration, `daily_digest` will deliver the generated MOBI file to your destination in either:
+
+* Copy the mobi to `~/Dropbox/Public/Kindle` for [IFTTT](http://ifttt.com) automation if the folder exists
+* Send the mobi file as an email attachment if SMTP server authentication is configured (see below)
 
 You can let IFTTT watch `/Kindle` subfolder to send to your Kindle personal document free email address.
 
@@ -44,6 +48,16 @@ READABILITY_PARSER_KEY=2caeae6676796adada6967a5cddcd6a2292
 ```
 
 You have to manually authenticate against [Pocket OAuth endpoint](http://getpocket.com/developer/docs/authentication) to get the tokens. Sorry.
+
+If you want to directly send email to your Kindle Personal Document, you'll need the following environment variables as well:
+
+```
+KINDLE_MAILTO=YOU@free.kindle.com
+KINDLE_MAILFROM=you@example.com
+SMTP_SERVER=smtp.example.com:587
+SMTP_USERNAME=you@example.com
+SMTP_PASSWORD=43829f4cchRRY8
+```
 
 ## Copyright
 

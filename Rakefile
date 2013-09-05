@@ -28,6 +28,12 @@ task :deliver do
 
   File.delete(tempfile)
 
+  if ENV['KINDLE_MAILTO']
+    puts "Sending mobi to Kindle Personal Document"
+    delivery = DailyDigest::Delivery.new
+    delivery.deliver(basename + ".mobi")
+  end
+
   outbox = "#{ENV['HOME']}/Dropbox/Public/Kindle"
   if File.exists?(outbox)
     puts "Publishing #{basename}.mobi to your Dropbox"
