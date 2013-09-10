@@ -24,7 +24,7 @@ module DailyDigest
           <h2 class="chapter"><%=h article.title %></h2>
           <div style="text-align:right"><% if article.author %><%=h article.author %> | <% end %><a href="<%=h article.url %>"><%=h article.domain %></a></div>
           <hr>
-          <%= render_article(article.content) %>
+          <% if article.content %><%= render_article(article.content) %><% end %>
           <% end %>
         </body>
         </html>
