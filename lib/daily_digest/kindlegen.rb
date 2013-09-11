@@ -25,8 +25,10 @@ module DailyDigest
         <title>Daily Digest <%= Time.now.strftime('%Y/%m/%d') %></title>
         </head>
         <body>
+          <% i = 0 %>
           <% articles.each do |article| %>
-          <h2 class="chapter"><%=x article.title %></h2>
+          <% i += 1 %>
+          <p><a name="chap<%= i %>"></a><h2 class="chapter"><%=x article.title %></h2></p>
           <div style="text-align:right"><% if article.author %><%=h article.author %> | <% end %><a href="<%=h article.url %>"><%=h article.domain %></a></div>
           <hr>
           <% if article.content %><%= render_article(article.content) %><% end %>
