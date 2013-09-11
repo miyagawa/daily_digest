@@ -7,6 +7,10 @@ module DailyDigest
   class Kindlegen
     include ERB::Util
 
+    def x(str)
+      str.codepoints.map { |code| code > 127 ? "&##{code};" : code.chr }.join("")
+    end
+
     def render(articles, path)
       output = ERB.new(template).result(binding)
       File.open(path, 'w') {|f| f.write(output) }
@@ -17,14 +21,16 @@ module DailyDigest
         <html>
         <head>
         <meta http-requiv="Content-Type" content="text/html;charset=utf-8">
+        <meta name="Author" content="daily_digest">
         <title>Daily Digest <%= Time.now.strftime('%Y/%m/%d') %></title>
         </head>
         <body>
           <% articles.each do |article| %>
-          <h2 class="chapter"><%=h article.title %></h2>
+          <h2 class="chapter"><%=x article.title %></h2>
           <div style="text-align:right"><% if article.author %><%=h article.author %> | <% end %><a href="<%=h article.url %>"><%=h article.domain %></a></div>
           <hr>
           <% if article.content %><%= render_article(article.content) %><% end %>
+          <mbp:pagebreak/>
           <% end %>
         </body>
         </html>
