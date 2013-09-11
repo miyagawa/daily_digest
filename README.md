@@ -10,7 +10,7 @@ Generates Daily Digest from Pocket
 
 * Ruby 1.9 or later
 * Bundler
-* [KindleGen](http://www.amazon.com/gp/feature.html?ie=UTF8&docId=1000765211)
+* [calibre](http://calibre-ebook.com/) and `ebook-convert` CLI
 * [Readability Parser API Key](http://www.readability.com/developers/api/parser)
 * [Pocket API Key and authorized token](http://getpocket.com/developer/docs/authentication)
 
@@ -20,7 +20,7 @@ Generates Daily Digest from Pocket
 
 * Fetch unread items from [Pocket](http://getpocket.com)
 * Parse content with [Readbility](http://www.readability.com)
-* Create MOBI with KindleGen
+* Create MOBI with Calibre ebook-convert
 
 Depending on your configuration, `daily_digest` will deliver the generated MOBI file to your destination in either:
 

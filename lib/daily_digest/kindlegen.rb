@@ -25,21 +25,12 @@ module DailyDigest
         <title>Daily Digest <%= Time.now.strftime('%Y/%m/%d') %></title>
         </head>
         <body>
-          <% articles.each_with_index do |article, i| %>
-          <p><a name="chap<%= i %>"></a><h2 class="chapter"><%=x article.title %></h2></p>
+          <% articles.each do |article| %>
+          <h2 class="chapter"><%=x article.title %></h2>
           <div style="text-align:right"><% if article.author %><%=h article.author %> | <% end %><a href="<%=h article.url %>"><%=h article.domain %></a></div>
           <hr>
           <% if article.content %><%= render_article(article.content) %><% end %>
-          <mbp:pagebreak/>
           <% end %>
-
-          <p><a name="TOC"><h3>Table of Contents</h3></a></p>
-          <ul>
-          <% articles.each_with_index do |article, i| %>
-          <li><a href="#chap<%= i %>"><%=x article.title %></a></li>
-          <% end %>
-          </ul>
-          <mbp:pagebreak/>
         </body>
         </html>
       EOF
@@ -72,7 +63,7 @@ module DailyDigest
     end
 
     def convert(html, mobi)
-      system "kindlegen", html, "-o", mobi, "-verbose"
+      system "ebook-convert", html, mobi, "--mobi-keep-original-image", "--mobi-file-type", "both"
     end
   end
 end
