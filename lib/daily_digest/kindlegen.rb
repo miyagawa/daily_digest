@@ -38,7 +38,7 @@ module DailyDigest
     end
 
     def render_article(content)
-      expand_inline_images(content).gsub('<h2', '<h3')
+      expand_inline_images(content).gsub('<h2', '<h3').gsub('</h2>', '</h3>')
     end
 
     def expand_inline_images(content)
