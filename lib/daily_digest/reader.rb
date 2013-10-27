@@ -24,6 +24,10 @@ module DailyDigest
         @data = data
       end
 
+      def valid?
+        title && content
+      end
+
       def title
         @data['title']
       end
