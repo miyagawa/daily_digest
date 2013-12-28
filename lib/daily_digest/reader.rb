@@ -12,7 +12,7 @@ module DailyDigest
 
     def endpoint(url)
       query = URI.encode_www_form("url" => url, "token" => token)
-      URI.parse("https://readability.com/api/content/v1/parser?#{query}")
+      URI.parse("https://www.readability.com/api/content/v1/parser?#{query}")
     end
 
     def get(url)
