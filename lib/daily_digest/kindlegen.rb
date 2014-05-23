@@ -63,7 +63,7 @@ module DailyDigest
     end
 
     def convert(html, mobi)
-      system "ebook-convert", html, mobi, "--mobi-file-type", "new"
+      system "ebook-convert", html, mobi, "--mobi-file-type", "old"
     end
   end
 end
