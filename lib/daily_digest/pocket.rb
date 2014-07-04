@@ -4,11 +4,12 @@ module DailyDigest
   class Pocket
     include Client
 
-    attr_reader :access_token, :consumer_key
+    attr_reader :access_token, :consumer_key, :favorites
 
-    def initialize(token, key)
+    def initialize(token, key, favorites)
       @access_token = token
       @consumer_key = key
+      @favorites = favorites
     end
 
     def endpoint
@@ -17,7 +18,9 @@ module DailyDigest
 
     def list
       data = request(endpoint)['list']
-      data.values.map { |item| Item.new(item) }.sort_by(&:item_id).reverse
+      items = data.values
+      items = items.select { |item| item['favorite'] == '1' } if favorites
+      items.map { |item| Item.new(item) }.sort_by(&:item_id).reverse
     end
 
     class Item

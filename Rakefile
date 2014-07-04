@@ -9,7 +9,7 @@ Dotenv.load
 
 task :deliver do
   puts "---> Getting unread items from Pocket"
-  pocket = DailyDigest::Pocket.new(ENV['POCKET_ACCESS_TOKEN'], ENV['POCKET_CONSUMER_KEY'])
+  pocket = DailyDigest::Pocket.new(ENV['POCKET_ACCESS_TOKEN'], ENV['POCKET_CONSUMER_KEY'], ENV['POCKET_FAVORITES'])
   items = pocket.list
 
   puts "---> Parsing items with Readability"
