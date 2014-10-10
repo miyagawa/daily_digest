@@ -47,7 +47,9 @@ module DailyDigest
     def expand_image(url)
       cache = cache_path(url)
       system 'wget', '-nc', url.to_s, '-O', cache
-      cache
+      cache.sub(/\.[a-zA-Z]+$/, '_r.jpg').tap do |dest|
+        system 'convert', '-quality', '60', '-resize', '768x>', cache, dest
+      end
     end
 
     def cache_path(url)
