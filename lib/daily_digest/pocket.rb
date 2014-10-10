@@ -20,6 +20,7 @@ module DailyDigest
       data = request(endpoint)['list']
       items = data.values
       items = items.select { |item| item['favorite'] == '1' } if favorites
+      items = items.first(ENV['N'].to_i) if ENV['N']
       items.map { |item| Item.new(item) }.sort_by(&:item_id).reverse
     end
 
