@@ -1,9 +1,28 @@
 module DailyDigest
   class ArticleRenderer
+    def initialize(number = 10)
+      @number = number
+    end
+
     def render(articles)
+      @queue = Queue.new
       articles.each do |article|
-        if article.content
-          article.rendered_content = render_article(article.content)
+        @queue << article
+      end
+      workers.each(&:join)
+    end
+
+    def workers
+      (1..@number).to_a.map do |i|
+        Thread.new do
+          loop do
+            break if @queue.empty?
+            article = @queue.pop
+            puts "---> Rendering #{article.title}"
+            if article.content
+              article.rendered_content = render_article(article.content)
+            end
+          end
         end
       end
     end
