@@ -2,7 +2,9 @@ module DailyDigest
   class ArticleRenderer
     def render(articles)
       articles.each do |article|
-        article.rendered_content = render_article(article.content)
+        if article.content
+          article.rendered_content = render_article(article.content)
+        end
       end
     end
 
