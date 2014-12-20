@@ -20,6 +20,8 @@ module DailyDigest
     end
 
     class Article
+      attr_accessor :rendered_content
+
       def initialize(data)
         @data = data
       end
