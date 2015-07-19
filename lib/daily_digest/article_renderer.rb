@@ -32,7 +32,13 @@ module DailyDigest
     end
 
     def expand_inline_images(content)
-      content.gsub(/src="(http.*?)"/) { %Q{src="#{expand_image(URI.parse($1))}"} }
+      content.gsub(/src="(http.*?)"/) {
+        begin
+          %Q{src="#{expand_image(URI.parse($1))}"}
+        rescue
+          nil
+        end
+      }
     end
 
     def expand_image(url)
